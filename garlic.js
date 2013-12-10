@@ -153,18 +153,16 @@
 
           // for checkboxes and radios
           if ( 'checked' === storedValue || this.$element.val() === storedValue ) {
-            return this.$element.attr( 'checked', true );
+            this.$element.attr( 'checked', true );
 
           // only needed for checkboxes
           } else if ( 'unchecked' === storedValue ) {
             this.$element.attr( 'checked', false );
           }
-
-          return;
+        } else {
+          // for input[type=text], select and textarea, just set val()
+          this.$element.val( storedValue );
         }
-
-        // for input[type=text], select and textarea, just set val()
-        this.$element.val( storedValue );
 
         // trigger custom user function when data is retrieved
         this.options.onRetrieve( this.$element, storedValue );
